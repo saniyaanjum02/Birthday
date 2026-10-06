@@ -1,0 +1,1907 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise 💗</title>
+
+<style>
+
+/* =========================
+   BASIC SETTINGS
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Trebuchet MS",Arial,sans-serif;
+    background:#fff4f8;
+    color:#553748;
+    overflow:hidden;
+}
+
+/* =========================
+   SLIDES
+========================= */
+
+.slide{
+    width:100%;
+    height:100vh;
+    display:none;
+    position:relative;
+    overflow:hidden;
+
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    padding:30px;
+    text-align:center;
+}
+
+.slide.active{
+    display:flex;
+    animation:slideIn .8s ease;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.slide::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:#ffd8e8;
+    filter:blur(100px);
+    opacity:.5;
+    top:-200px;
+    left:-150px;
+    z-index:-1;
+}
+
+.slide::after{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:#ded7ff;
+    filter:blur(100px);
+    opacity:.5;
+    bottom:-200px;
+    right:-150px;
+    z-index:-1;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+h1{
+    font-size:clamp(42px,8vw,85px);
+    color:#ff5795;
+    margin-bottom:15px;
+}
+
+h2{
+    font-size:clamp(30px,5vw,55px);
+    color:#e94e8c;
+    margin-bottom:20px;
+}
+
+h3{
+    color:#d94b84;
+}
+
+p{
+    font-size:18px;
+    line-height:1.7;
+    max-width:750px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+
+    padding:14px 27px;
+    margin:10px;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+        135deg,
+        #ff5795,
+        #ff9fc5
+    );
+
+    color:white;
+    font-size:17px;
+
+    box-shadow:
+        0 8px 25px rgba(255,87,149,.25);
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-4px) scale(1.04);
+}
+
+.next{
+    position:absolute;
+    right:25px;
+    bottom:20px;
+}
+
+.back{
+    position:absolute;
+    left:25px;
+    bottom:20px;
+}
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.floating-heart{
+    position:fixed;
+    bottom:-50px;
+    pointer-events:none;
+    z-index:1000;
+
+    animation:floatHeart 6s linear forwards;
+}
+
+@keyframes floatHeart{
+
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   SLIDE 1
+========================= */
+
+#slide1{
+    background:
+        linear-gradient(
+            135deg,
+            #ffe0ed,
+            #fff,
+            #e8e2ff
+        );
+}
+
+.big-heart{
+    font-size:110px;
+    animation:heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
+}
+
+.small{
+    color:#9b7284;
+}
+
+/* =========================
+   SLIDE 2
+========================= */
+
+.name{
+    font-size:55px;
+    font-weight:bold;
+    color:#ff5795;
+    margin:10px;
+}
+
+/* =========================
+   BALLOONS
+========================= */
+
+.balloons{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.balloon{
+    position:absolute;
+    font-size:55px;
+    animation:balloonMove 4s infinite alternate;
+}
+
+.balloon:nth-child(1){
+    left:5%;
+    top:10%;
+}
+
+.balloon:nth-child(2){
+    right:5%;
+    top:15%;
+    animation-delay:.5s;
+}
+
+.balloon:nth-child(3){
+    left:12%;
+    bottom:10%;
+    animation-delay:1s;
+}
+
+.balloon:nth-child(4){
+    right:12%;
+    bottom:12%;
+    animation-delay:1.5s;
+}
+
+@keyframes balloonMove{
+    from{
+        transform:translateY(0) rotate(-5deg);
+    }
+
+    to{
+        transform:translateY(-25px) rotate(5deg);
+    }
+}
+
+/* =========================
+   CAKE
+========================= */
+
+.cake{
+    margin:30px auto;
+    width:240px;
+}
+
+.candles{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.candle{
+    width:15px;
+    height:60px;
+    background:#9c8cff;
+    border-radius:6px;
+    position:relative;
+    cursor:pointer;
+}
+
+.flame{
+    position:absolute;
+    top:-30px;
+    left:-3px;
+    font-size:25px;
+}
+
+.candle.off .flame{
+    display:none;
+}
+
+.cake-layer{
+    height:55px;
+    margin:3px;
+    border-radius:15px;
+}
+
+.layer1{
+    background:#ff91b8;
+}
+
+.layer2{
+    background:#ffb7d1;
+}
+
+.layer3{
+    background:#ffd6e5;
+}
+
+.cream{
+    height:14px;
+    background:white;
+    border-radius:50%;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    max-width:1000px;
+}
+
+.card{
+    width:250px;
+    min-height:190px;
+
+    background:rgba(255,255,255,.78);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:
+        0 12px 35px rgba(100,50,80,.1);
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:
+        translateY(-10px)
+        rotate(1deg);
+}
+
+.card-icon{
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+/* =========================
+   MEMORIES
+========================= */
+
+.memories{
+    display:grid;
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    max-width:900px;
+    width:90%;
+}
+
+.memory{
+    height:150px;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:55px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd5e6,
+            #e5ddff
+        );
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.memory:hover{
+    transform:scale(1.05) rotate(2deg);
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter{
+    max-width:720px;
+    width:90%;
+
+    padding:35px;
+
+    background:#fffafc;
+
+    border-radius:25px;
+
+    text-align:left;
+
+    border:2px solid #ffd1e2;
+
+    box-shadow:
+        0 15px 40px rgba(100,50,80,.12);
+}
+
+/* =========================
+   GAME AREA
+========================= */
+
+.game-area{
+    width:min(850px,90vw);
+    height:400px;
+
+    background:
+        rgba(255,255,255,.7);
+
+    border:3px dashed #ff8fba;
+
+    border-radius:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin:15px;
+}
+
+.game-heart{
+    position:absolute;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+    animation:fall 3s linear;
+}
+
+@keyframes fall{
+
+    from{
+        top:-50px;
+    }
+
+    to{
+        top:430px;
+    }
+
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-box{
+    width:min(600px,90vw);
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:30px;
+
+    box-shadow:
+        0 15px 40px rgba(100,50,80,.12);
+}
+
+.quiz-option{
+    display:block;
+
+    width:90%;
+
+    margin:12px auto;
+}
+
+/* =========================
+   GIFT
+========================= */
+
+.gifts{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.gift{
+    font-size:100px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.gift:hover{
+    transform:
+        scale(1.15)
+        rotate(-5deg);
+}
+
+.secret{
+    display:none;
+    margin-top:20px;
+    animation:pop .7s ease;
+}
+
+@keyframes pop{
+
+    from{
+        transform:scale(.4);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+/* =========================
+   FINAL SLIDE
+========================= */
+
+#final{
+    background:
+        radial-gradient(
+            circle at top,
+            #51416e,
+            #171326
+        );
+
+    color:white;
+}
+
+#final h1{
+    color:#ff9fc5;
+}
+
+#final p{
+    color:#ffe9f2;
+}
+
+.stars{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.star{
+    position:absolute;
+    color:white;
+
+    animation:
+        twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+
+    from{
+        opacity:.2;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.2);
+    }
+
+}
+
+/* =========================
+   FIREWORKS
+========================= */
+
+.firework{
+    position:fixed;
+    font-size:30px;
+    z-index:9999;
+
+    animation:
+        firework 1.5s forwards;
+}
+
+@keyframes firework{
+
+    0%{
+        transform:scale(.2);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            scale(4)
+            translate(
+                calc(var(--x) * 1px),
+                calc(var(--y) * 1px)
+            );
+
+        opacity:0;
+    }
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    .name{
+        font-size:40px;
+    }
+
+    .memory{
+        height:110px;
+        font-size:40px;
+    }
+
+    .memories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .card{
+        width:90%;
+    }
+
+    .letter{
+        padding:22px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SLIDE 1
+===================================================== -->
+
+<section class="slide active" id="slide1">
+
+    <div class="big-heart">
+        💗
+    </div>
+
+    <p class="small">
+        I made something very special for you...
+    </p>
+
+    <h1>
+        Wait... 👀
+    </h1>
+
+    <p>
+        Before you continue, promise me you'll smile
+        at least once. 🥹
+    </p>
+
+    <button onclick="nextSlide()">
+        I Promise 💕
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 2
+===================================================== -->
+
+<section class="slide">
+
+    <div class="balloons">
+
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+
+    </div>
+
+    <div class="big-heart">
+        🎀
+    </div>
+
+    <h1>
+        HAPPY BIRTHDAY!
+    </h1>
+
+    <div class="name">
+        BESTIE'S NAME 💗
+    </div>
+
+    <p>
+        Today isn't just another day.
+        It's the day someone incredibly special
+        came into this world. ✨
+    </p>
+
+    <button onclick="nextSlide()">
+        Let's Begin 🌸
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 3 - CAKE
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        🎂 Make A Wish
+    </h2>
+
+    <p>
+        Click every candle and make your wishes. ✨
+    </p>
+
+    <div class="cake">
+
+        <div class="candles">
+
+            <div class="candle"
+                 onclick="blowCandle(this)">
+                <span class="flame">🔥</span>
+            </div>
+
+            <div class="candle"
+                 onclick="blowCandle(this)">
+                <span class="flame">🔥</span>
+            </div>
+
+            <div class="candle"
+                 onclick="blowCandle(this)">
+                <span class="flame">🔥</span>
+            </div>
+
+            <div class="candle"
+                 onclick="blowCandle(this)">
+                <span class="flame">🔥</span>
+            </div>
+
+            <div class="candle"
+                 onclick="blowCandle(this)">
+                <span class="flame">🔥</span>
+            </div>
+
+        </div>
+
+        <div class="cream"></div>
+
+        <div class="cake-layer layer1"></div>
+
+        <div class="cream"></div>
+
+        <div class="cake-layer layer2"></div>
+
+        <div class="cake-layer layer3"></div>
+
+    </div>
+
+    <p id="wishMessage"></p>
+
+    <button onclick="nextSlide()">
+        My Wishes Are Ready 💕
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 4 - WISHES
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        🌷 My Wishes For You
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">
+                🌸
+            </div>
+
+            <h3>
+                Happiness
+            </h3>
+
+            <p>
+                May your days be filled with
+                tiny reasons to smile.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ✨
+            </div>
+
+            <h3>
+                Dreams
+            </h3>
+
+            <p>
+                May your biggest dreams slowly
+                become beautiful reality.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🦋
+            </div>
+
+            <h3>
+                Growth
+            </h3>
+
+            <p>
+                May every year make you
+                stronger and wiser.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                💕
+            </div>
+
+            <h3>
+                Love
+            </h3>
+
+            <p>
+                May you always have people
+                who genuinely care about you.
+            </p>
+
+        </div>
+
+    </div>
+
+    <button onclick="nextSlide()">
+        Next 🌸
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 5 - MEMORIES
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        📸 Little Memories
+    </h2>
+
+    <p>
+        Some moments become memories
+        without us even realizing it.
+    </p>
+
+    <br>
+
+    <div class="memories">
+
+        <div class="memory">
+            🌸
+        </div>
+
+        <div class="memory">
+            😂
+        </div>
+
+        <div class="memory">
+            🫶
+        </div>
+
+        <div class="memory">
+            🎀
+        </div>
+
+        <div class="memory">
+            🌙
+        </div>
+
+        <div class="memory">
+            💗
+        </div>
+
+    </div>
+
+    <p>
+        Replace these boxes with your real photos. 📷
+    </p>
+
+    <button onclick="nextSlide()">
+        Continue 💕
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 6 - 10 REASONS
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        💗 10 Little Reasons
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+            🌸<br>
+            Your smile
+        </div>
+
+        <div class="card">
+            😂<br>
+            Your laughter
+        </div>
+
+        <div class="card">
+            <br>
+            Your kindness
+        </div>
+
+        <div class="card">
+            ✨<br>
+            Your dreams
+        </div>
+
+        <div class="card">
+            🦋<br>
+            Your strength
+        </div>
+
+        <div class="card">
+            🎀<br>
+            Your personality
+        </div>
+
+        <div class="card">
+            🌙<br>
+            Your calm moments
+        </div>
+
+        <div class="card">
+            💕<br>
+            Your friendship
+        </div>
+
+        <div class="card">
+            🌷<br>
+            Your heart
+        </div>
+
+        <div class="card">
+            👑<br>
+            Simply YOU
+        </div>
+
+    </div>
+
+    <button onclick="nextSlide()">
+        Next 💗
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 7 - LETTER
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        💌 A Little Letter
+    </h2>
+
+    <div class="letter">
+
+        <p>
+
+            Dear BESTIE'S NAME,
+
+            <br><br>
+
+            I don't know if I say this enough,
+            but I'm really grateful that you're
+            a part of my life.
+
+            <br><br>
+
+            Life can be confusing, messy and
+            unpredictable. But some people have
+            this beautiful ability to make life
+            feel a little brighter.
+
+            <br><br>
+
+            You are one of those people.
+
+            <br><br>
+
+            I hope this new year of your life
+            gives you countless reasons to smile.
+
+            I hope you laugh until your stomach hurts,
+            achieve things you once thought were impossible,
+            and create memories you'll remember forever.
+
+            <br><br>
+
+            And whenever life gets difficult,
+            remember how far you've already come.
+
+            <br><br>
+
+            Keep being yourself.
+
+            Never forget how special you are. 💗
+
+            <br><br>
+
+            Happy Birthday! 🎂✨
+
+            <br><br>
+
+            With lots of love,
+
+            <br>
+
+            YOUR NAME 💕
+
+        </p>
+
+    </div>
+
+    <button onclick="nextSlide()">
+        There's More... 👀
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     GAME 1
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        🎮 Game 1
+    </h2>
+
+    <h3>
+        Catch The Hearts 💗
+    </h3>
+
+    <p>
+        Catch as many falling hearts as you can!
+    </p>
+
+    <h3>
+        Score:
+        <span id="score">
+            0
+        </span>
+    </h3>
+
+    <div
+        class="game-area"
+        id="gameArea">
+    </div>
+
+    <button onclick="startHeartGame()">
+        Start Game 🎮
+    </button>
+
+    <button onclick="nextSlide()">
+        Next Game 💕
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     GAME 2
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        🧠 Game 2
+    </h2>
+
+    <h3>
+        Birthday Quiz 💗
+    </h3>
+
+    <br>
+
+    <div class="quiz-box">
+
+        <h3>
+            What makes a birthday truly special?
+        </h3>
+
+        <button
+            class="quiz-option"
+            onclick="quizAnswer(1)">
+            🎂 Cake
+        </button>
+
+        <button
+            class="quiz-option"
+            onclick="quizAnswer(2)">
+            🎁 Gifts
+        </button>
+
+        <button
+            class="quiz-option"
+            onclick="quizAnswer(3)">
+            💕 Good people
+        </button>
+
+        <p id="quizResult"></p>
+
+    </div>
+
+    <button onclick="nextSlide()">
+        Next Game 🎮
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     GAME 3
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        🎁 Find The Secret Gift
+    </h2>
+
+    <p>
+        One of these gifts contains
+        a special surprise...
+    </p>
+
+    <br>
+
+    <div class="gifts">
+
+        <span
+            class="gift"
+            onclick="openGift()">
+            🎁
+        </span>
+
+        <span
+            class="gift"
+            onclick="openGift()">
+            🎁
+        </span>
+
+        <span
+            class="gift"
+            onclick="openGift()">
+            🎁
+        </span>
+
+    </div>
+
+    <div
+        class="secret"
+        id="secretMessage">
+
+        <h2>
+            YOU FOUND IT! 🥹💗
+        </h2>
+
+        <p>
+            Your secret gift is a reminder
+            that you are loved, appreciated
+            and incredibly special. ✨
+        </p>
+
+    </div>
+
+    <button onclick="nextSlide()">
+        I Found It! 💕
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 11
+===================================================== -->
+
+<section class="slide">
+
+    <h2>
+        🌙 One Last Reminder
+    </h2>
+
+    <div class="card">
+
+        <div class="card-icon">
+            🦋
+        </div>
+
+        <p>
+            You don't have to have everything
+            figured out.
+        </p>
+
+        <br>
+
+        <p>
+            You don't have to be perfect.
+        </p>
+
+        <br>
+
+        <p>
+            Just keep growing,
+            keep dreaming,
+            and keep being YOU.
+        </p>
+
+        <br>
+
+        <p>
+            There are still so many beautiful
+            moments waiting for you. 🌷
+        </p>
+
+    </div>
+
+    <button onclick="nextSlide()">
+        Final Surprise ✨
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL SLIDE
+===================================================== -->
+
+<section class="slide" id="final">
+
+    <div
+        class="stars"
+        id="stars">
+    </div>
+
+    <div class="big-heart">
+        💗
+    </div>
+
+    <h1>
+        HAPPY BIRTHDAY
+    </h1>
+
+    <div class="name">
+        BESTIE'S NAME
+    </div>
+
+    <br>
+
+    <p>
+        May your life always have a little magic,
+        lots of laughter,
+        beautiful memories,
+        and people who love you
+        exactly as you are.
+    </p>
+
+    <br>
+
+    <h2 style="color:#ffd0e3;">
+        You deserve beautiful things. 🌷
+    </h2>
+
+    <p>
+        Never forget that. 💕
+    </p>
+
+    <button onclick="celebrate()">
+        🎉 CELEBRATE 🎉
+    </button>
+
+</section>
+
+
+
+<script>
+
+/* =====================================================
+   SLIDE SYSTEM
+===================================================== */
+
+let currentSlide = 0;
+
+const slides =
+    document.querySelectorAll(".slide");
+
+
+function showSlide(number){
+
+    slides.forEach(function(slide){
+
+        slide.classList.remove("active");
+
+    });
+
+    slides[number].classList.add("active");
+
+    currentSlide = number;
+
+}
+
+
+function nextSlide(){
+
+    if(currentSlide < slides.length - 1){
+
+        showSlide(currentSlide + 1);
+
+    }
+
+}
+
+
+function previousSlide(){
+
+    if(currentSlide > 0){
+
+        showSlide(currentSlide - 1);
+
+    }
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+function createFloatingHeart(){
+
+    const heart =
+        document.createElement("div");
+
+    heart.className =
+        "floating-heart";
+
+    const emojis = [
+        "💗",
+        "💕",
+        "💖",
+        "🌸",
+        "✨",
+        "🎀"
+    ];
+
+    heart.innerHTML =
+        emojis[
+            Math.floor(
+                Math.random()*emojis.length
+            )
+        ];
+
+    heart.style.left =
+        Math.random()*100 + "vw";
+
+    heart.style.fontSize =
+        (18 + Math.random()*25) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function(){
+
+        heart.remove();
+
+    },6000);
+
+}
+
+setInterval(
+    createFloatingHeart,
+    700
+);
+
+
+/* =====================================================
+   CANDLES
+===================================================== */
+
+let candlesBlown = 0;
+
+
+function blowCandle(candle){
+
+    if(
+        candle.classList.contains("off")
+    ){
+        return;
+    }
+
+    candle.classList.add("off");
+
+    candlesBlown++;
+
+    if(candlesBlown === 5){
+
+        document.getElementById(
+            "wishMessage"
+        ).innerHTML =
+        "✨ All the candles are out! May every wish come true. 💗";
+
+        confetti();
+
+    }
+
+}
+
+
+/* =====================================================
+   HEART CATCHING GAME
+===================================================== */
+
+let gameRunning = false;
+let score = 0;
+
+
+function startHeartGame(){
+
+    if(gameRunning){
+        return;
+    }
+
+    gameRunning = true;
+
+    score = 0;
+
+    document.getElementById(
+        "score"
+    ).innerText = score;
+
+    const area =
+        document.getElementById(
+            "gameArea"
+        );
+
+    const interval =
+        setInterval(function(){
+
+            const heart =
+                document.createElement("div");
+
+            heart.className =
+                "game-heart";
+
+            heart.innerHTML =
+                ["💗","💕","💖","💘"]
+                [
+                    Math.floor(
+                        Math.random()*4
+                    )
+                ];
+
+            heart.style.left =
+                Math.random()*90 + "%";
+
+            heart.onclick =
+                function(){
+
+                    score++;
+
+                    document.getElementById(
+                        "score"
+                    ).innerText = score;
+
+                    heart.remove();
+
+                };
+
+            area.appendChild(heart);
+
+            setTimeout(function(){
+
+                if(heart.parentElement){
+
+                    heart.remove();
+
+                }
+
+            },3000);
+
+        },500);
+
+
+    setTimeout(function(){
+
+        clearInterval(interval);
+
+        gameRunning = false;
+
+        alert(
+            "🎮 Game Over!\n\n" +
+            "Your score: " +
+            score +
+            " hearts 💗"
+        );
+
+    },15000);
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function quizAnswer(answer){
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+    if(answer === 3){
+
+        result.innerHTML =
+        "🥹 CORRECT! Good people make everything better. 💕";
+
+        confetti();
+
+    }
+    else{
+
+        result.innerHTML =
+        "Haha! That's a good answer too! 😂💗";
+
+    }
+
+}
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+function openGift(){
+
+    const secret =
+        document.getElementById(
+            "secretMessage"
+        );
+
+    secret.style.display =
+        "block";
+
+    confetti();
+
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function confetti(){
+
+    const pieces = [
+        "🎉",
+        "💗",
+        "✨",
+        "🌸",
+        "💕",
+        "🎀"
+    ];
+
+    for(
+        let i=0;
+        i<50;
+        i++
+    ){
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+        piece.innerHTML =
+            pieces[
+                Math.floor(
+                    Math.random()*pieces.length
+                )
+            ];
+
+        piece.style.position =
+            "fixed";
+
+        piece.style.left =
+            Math.random()*100 + "vw";
+
+        piece.style.top =
+            Math.random()*40 + "vh";
+
+        piece.style.fontSize =
+            "25px";
+
+        piece.style.zIndex =
+            "9999";
+
+        document.body.appendChild(
+            piece
+        );
+
+        piece.animate(
+            [
+                {
+                    transform:
+                        "translateY(0) rotate(0)",
+                    opacity:1
+                },
+
+                {
+                    transform:
+                        "translateY(600px) rotate(720deg)",
+                    opacity:0
+                }
+            ],
+            {
+                duration:1500,
+                easing:"ease-out"
+            }
+        );
+
+        setTimeout(function(){
+
+            piece.remove();
+
+        },1500);
+
+    }
+
+}
+
+
+/* =====================================================
+   FINAL STARS
+===================================================== */
+
+function createStars(){
+
+    const container =
+        document.getElementById(
+            "stars"
+        );
+
+    for(
+        let i=0;
+        i<80;
+        i++
+    ){
+
+        const star =
+            document.createElement(
+                "div"
+            );
+
+        star.className =
+            "star";
+
+        star.innerHTML =
+            Math.random() > .5
+            ? "✦"
+            : "·";
+
+        star.style.left =
+            Math.random()*100 + "%";
+
+        star.style.top =
+            Math.random()*100 + "%";
+
+        star.style.fontSize =
+            (10 +
+            Math.random()*20) +
+            "px";
+
+        star.style.animationDelay =
+            Math.random()*2 + "s";
+
+        container.appendChild(
+            star
+        );
+
+    }
+
+}
+
+createStars();
+
+
+/* =====================================================
+   FINAL CELEBRATION
+===================================================== */
+
+function celebrate(){
+
+    for(
+        let i=0;
+        i<8;
+        i++
+    ){
+
+        setTimeout(
+            confetti,
+            i*250
+        );
+
+    }
+
+    createFireworks();
+
+}
+
+
+/* =====================================================
+   FIREWORKS
+===================================================== */
+
+function createFireworks(){
+
+    for(
+        let i=0;
+        i<35;
+        i++
+    ){
+
+        const firework =
+            document.createElement(
+                "div"
+            );
+
+        firework.className =
+            "firework";
+
+        firework.innerHTML =
+            [
+                "🎆",
+                "✨",
+                "💗",
+                "🌸"
+            ][
+                Math.floor(
+                    Math.random()*4
+                )
+            ];
+
+        firework.style.left =
+            Math.random()*100 + "vw";
+
+        firework.style.top =
+            Math.random()*70 + "vh";
+
+        firework.style.setProperty(
+            "--x",
+            Math.random()*300-150
+        );
+
+        firework.style.setProperty(
+            "--y",
+            Math.random()*300-150
+        );
+
+        document.body.appendChild(
+            firework
+        );
+
+        setTimeout(function(){
+
+            firework.remove();
+
+        },1600);
+
+    }
+
+}
+
+
+/* =====================================================
+   KEYBOARD CONTROLS
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "ArrowRight"){
+
+            nextSlide();
+
+        }
+
+        if(event.key === "ArrowLeft"){
+
+            previousSlide();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
